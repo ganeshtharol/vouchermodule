@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
+=======
+yarn.lock
+>>>>>>> 4d9471dff0d6aafc108295959e582904275d87bf
