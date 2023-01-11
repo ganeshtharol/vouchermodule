@@ -25,6 +25,7 @@ export default mainSlice.reducer;
 export const setSuccessResponse = async (data, dispatch) => {
   try {
     if (data?.statusCode == 200) {
+      
       dispatch(setSuccess(data))
     }
     else {
