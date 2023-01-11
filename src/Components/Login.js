@@ -53,7 +53,7 @@ export default function Login() {
                           name="email"
                           placeholder="Enter email"
                           autocomplete="off"
-                          className={`mt-2 form-control
+                          className={`form-control
                           ${touched.email && errors.email ? "is-invalid" : ""}`}
                         />
   
