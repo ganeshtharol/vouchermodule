@@ -1,0 +1,994 @@
+@charset "utf-8";
+
+/*-----------------------------------
+#   Fonts 
+------------------------------------*/
+
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url('../fonts/Roboto-Light.eot');
+    src: url('../fonts/Roboto-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Roboto-Light.woff2') format('woff2'),
+        url('../fonts/Roboto-Light.woff') format('woff'),
+        url('../fonts/Roboto-Light.ttf') format('truetype'),
+        url('../fonts/Roboto-Light.svg#Roboto-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('../fonts/Roboto-Regular.eot');
+    src: url('../fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Roboto-Regular.woff2') format('woff2'),
+        url('../fonts/Roboto-Regular.woff') format('woff'),
+        url('../fonts/Roboto-Regular.ttf') format('truetype'),
+        url('../fonts/Roboto-Regular.svg#Roboto-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url('../fonts/Roboto-Medium.eot');
+    src: url('../fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Roboto-Medium.woff2') format('woff2'),
+        url('../fonts/Roboto-Medium.woff') format('woff'),
+        url('../fonts/Roboto-Medium.ttf') format('truetype'),
+        url('../fonts/Roboto-Medium.svg#Roboto-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url('../fonts/Roboto-Bold.eot');
+    src: url('../fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Roboto-Bold.woff2') format('woff2'),
+        url('../fonts/Roboto-Bold.woff') format('woff'),
+        url('../fonts/Roboto-Bold.ttf') format('truetype'),
+        url('../fonts/Roboto-Bold.svg#Roboto-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/*-----------------------------------
+#   Common Css 
+------------------------------------*/
+
+:root{
+    --plyr-color-main: #B60044;
+    --plyr-video-controls-background: #001821;
+    --plyr-audio-controls-background: #001821;
+    --plyr-control-padding:  50px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: auto;
+    }
+}
+
+html {
+    direction: ltr;
+    overflow-x: hidden;
+    box-shadow: none !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: 'Roboto-Regular';
+    font-weight: normal;
+    font-style: normal;
+    text-rendering: auto;
+    color: #001821;
+    background-color: #FFF;
+    overflow-x: hidden;
+}
+
+ul, ol{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a{
+    text-decoration: none;
+    outline: none !important;
+    transition: 0.3s ease;
+}
+
+a:hover{
+    color: #B60044;
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+p {
+    font-size: 16px;
+    line-height: 24px;
+    color: #000;
+    margin: 0;
+}
+
+b{
+    font-family: "Roboto-Medium";
+    font-weight: 500;
+}
+
+/*---------------------------
+# Selection
+----------------------------*/
+::selection {
+    background: #B60044;
+    color: #FFF;
+}
+
+::-webkit-selection {
+    background: #B60044;
+    color: #FFF;
+}
+
+::-moz-selection {
+    background: #B60044;
+    color: #FFF;
+}
+
+::-o-selection {
+    background: #B60044;
+    color: #FFF;
+}
+
+::-ms-selection {
+    background: #B60044;
+    color: #FFF;
+}
+
+/*---------------------------
+# PlaceHolder
+----------------------------*/
+::-webkit-input-placeholder {  
+  color: #808080 !important;
+}
+::-moz-placeholder { 
+  color: #808080 !important;
+}
+:-ms-input-placeholder { 
+  color: #808080 !important;
+}
+:-moz-placeholder { 
+  color: #808080 !important;
+}
+
+
+/*---------------------------
+# Button CSS
+----------------------------*/
+.button{
+    display: inline-block;
+    font-size: 18px;
+    font-family: 'Roboto-Medium';
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 13.5px 15px;
+    outline: none;
+    border-radius: 0;
+    transition: all 500ms ease;
+    transition: color 0.20s ease-in-out, background-color 0.20s ease-in-out, border-color 0.20s ease-in-out, box-shadow 0.20s ease-in-out;
+}
+
+/*---------------------------
+# Button Size
+----------------------------*/
+.button-sm {
+    font-size: 16px;
+    padding: 8px 15px;
+}
+
+.button-lg {
+    font-size: 20px;
+    padding: 15px 15px;
+}
+
+/*---------------------------
+# Button Varients
+----------------------------*/
+
+.button-purple {
+    background-color: #B60044;
+    color: #E9D800;
+    border-color: #B60044;
+}
+
+.button-black{
+    background-color: #000917;
+    color: #fff;
+    border-color: #000917;
+}
+
+/*---------------------------
+# Button Hover CSS
+----------------------------*/
+
+.button-purple:hover {
+    background-color: #000917;
+    color: #FFF;
+    border-color: #172127;
+}
+
+
+/*---------------------------
+# Form CSS
+----------------------------*/
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-control {
+    font-size: 16px;
+    font-family: "Roboto-Light";
+    line-height: 20px;
+    padding: 14px 20px;
+    height: 56px;
+    border-radius: 2px;
+    border-color: #CCCCCC;
+    color: #000917;
+    background-color: #FFF;
+}
+
+.form-control:focus {
+    color: #000917;
+    background-color: #fff;
+    border-color: #BC004B;
+    outline: 0;
+    box-shadow: none;
+}
+
+
+@media (max-width: 767px){
+    .form-control{
+        height: 50px;
+        padding: 12px 16px;
+    }
+
+    .button{
+        padding: 10.5px 15px;
+    }
+}
+
+.custom-select {
+    /* background: #FFF url("../images/icons/dropdown.svg") right .75rem center/8px 10px no-repeat; */
+    background-size: 14px;
+    padding: 14px 16px;
+    height: 48px;
+    line-height: 0;
+    font-size: 16px;
+    font-family: "Jamjuree-Regular";
+    border-radius: 4px;
+    border-color: #ECECEC;
+    color: #100F0F;
+    background-color: #FFF;
+}
+
+.custom-select:focus {
+    color: #100F0F;
+    background-color: #fff;
+    border-color: #BD3120;
+    outline: 0;
+    box-shadow: none;
+}
+
+textarea.form-control {
+    height: 120px;
+    resize: none;
+}
+
+/*-------------------------------
+#   Login Page
+-------------------------------*/
+
+
+.auth-container{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.form-title{
+    padding-bottom: 25px;
+}
+.form-title h4{
+    font-size: 40px;
+    font-family: "Roboto-Medium";
+    color: #000917;
+    padding-bottom: 5px;
+}
+.form-title p{
+    font-family: "Roboto-Light";
+}
+
+.form-wrapper{
+    border: 1px solid #ccc;
+    padding: 24px 12px;
+    background-color: #fff;
+}
+
+.form-wrapper .form-media{
+    width: 100%;
+    /*height: 511px;*/
+    height: 100%;
+    background: #FF416C;
+    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+    background: linear-gradient(to right, #FF4B2B, #FF416C);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper .form-media > img{
+    align-self: center;
+}
+
+.form-media .text-center{
+    padding: 30px;
+}
+.form-media .text-center img{
+    margin-bottom: 35px;
+}
+.form-media h4{
+    font-size: 36px;
+    font-family: "Roboto-Medium";
+    color: #fff;
+}
+.form-media p{
+    font-size: 13px;
+    font-family: "Roboto-Medium";
+    color: #fff;
+}
+
+.form-border-box,
+.jobs-list{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 35px 35px;
+    height: 100%;
+
+}
+
+.forgot-pass{
+    margin-bottom: 50px;
+}
+.forgot-pass a{
+    font-size: 16px;
+    font-family: "Roboto-Medium";
+    color: #BC004B;
+}
+
+.password-group{
+    position: relative;
+}
+
+.password-group .show-pass-toggle{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.password-group .show-pass-toggle .eye-closed{
+    display: none;
+}
+.social-login{
+    text-align: center;
+    margin-top: 40px;
+}
+.social-login .footer-social{
+    margin-bottom: 0;
+}
+.social-login h4{
+    display: inline-block;
+    font-size: 14px;
+    position: relative;
+    margin-bottom: 15px;
+    color: #8a8a8a;
+    text-transform: uppercase;
+}
+
+.social-login h4::before{
+    content: "";
+    width: 50px;
+    height: 1px;
+    background-color: #8a8a8a;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    left: -60px;
+}
+
+.social-login h4::after{
+    content: "";
+    width: 50px;
+    height: 1px;
+    background-color: #8a8a8a;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    right: -60px;
+}
+
+.social-login .footer-social li a{
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.2);
+    border-radius: 50%;
+}
+
+.goto{
+    font-size: 16px;
+    font-weight: 500;
+    color: #545454;
+    margin-top: 30px;
+}
+
+.goto > a {
+    color: #B60044;
+}
+
+
+.section-title{
+    padding-bottom: 30px;
+}
+.section-title h4{
+    font-size: 32px;
+    font-weight: 600;
+    color: #222;
+}
+
+.product{
+    display: block;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.product-media{
+    position: relative;
+}
+.product-media .wishlist-btn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 2;
+}
+.product-img{
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    background-color: #FFF;
+}
+.product-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+}
+.product-details{
+    padding: 15px 10px;
+}
+.product-price .offer-price{
+    font-size: 18px;
+    line-height: 26px;
+    color: #4D4637;
+    font-family: "Malyalam-Bold";
+    padding-right: 10px;
+}
+.product-price .actual-price{
+    font-size: 14px;
+    line-height: 26px;
+    color: #898A8D;
+    padding-right: 10px;
+    text-decoration: line-through;
+}
+
+.product-category{
+    font-size: 14px;
+    color: #C8C2B7;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    line-height: 16px;
+    padding-bottom: 4px;
+}
+
+.product-title{
+    font-size: 16px;
+    line-height: 24px;
+    color: #4D4637;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+
+
+
+
+/*---------------------------------
+# Header CSS
+----------------------------------*/
+
+.main-content{
+    padding-top: 85px;
+    padding-bottom: 30px;
+}
+
+.section-padding-40{
+    padding: 40px 0;
+}
+
+header{
+    padding: 20px 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    -webkit-transition: .3s;
+    transition: .3s;
+    background: #B60044;
+}
+
+header.navbar-sticky{
+    -webkit-transition: none;
+    transition: none;
+}
+
+header.navbar-sticky-moved-up{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #FFF;
+    z-index: 999;
+    margin-top: -140px;
+    box-shadow: 0px 1px 7px rgba(0,0,0,0.1);
+}
+
+header.navbar-sticky-transitioned{
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+header.navbar-sticky-on{
+    margin-top: 0;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+header > .container{
+    display: flex;
+    max-width: 1634px;
+    align-items: center;
+}
+
+header .brand-logo{
+    display: inline-block;
+    min-width: 80px;
+    width: 120px;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.header-search{
+    margin-left: 20px;
+    margin-right: auto;
+}
+
+.header-search .form-group{
+    margin: 0;
+    position: relative;
+}
+
+.header-search .form-control {
+    height: 46px;
+    padding-left: 38px;
+    background-color: transparent;
+}
+
+.header-search .form-select{
+    height: 46px;
+    background-color: transparent;
+}
+
+.header-search .form-group::before{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.header-search .search::before{
+    /* content: url('../../images/icons/ic-search.svg'); */
+}
+
+.main-navigation{
+    margin-left: auto;
+}
+.main-navigation > ul{
+    display: inline-flex;
+}
+.main-navigation > ul > li{
+    padding: 0 15px;
+}
+.main-navigation > ul > li > a {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFF;
+    padding: 10px 10px;
+    position: relative;
+}
+
+.main-navigation > ul > li > a.active{
+    color: #222;
+}
+
+.user-controls{
+    display: inline-flex;
+    align-items: center;
+    margin: 0 -10px;
+    font-size: 28px;
+    color: #454545;
+}
+.user-controls > li {
+    padding: 0 7px;
+}
+
+.nav-toggler{
+    display: none;
+    color: #fff;
+}
+
+.nav-toggler > *{
+    cursor: pointer;
+}
+.user-controls .notification{
+    position: relative;
+    display: block;
+    margin: 0 10px;
+    font-size: 20px;
+    color: #ffff;
+}
+.user-controls .notification .count{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #222;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    position: absolute;
+    right: -2px;
+    top: -2px;
+}
+
+.nav-close-btn{
+    font-size: 24px;
+    margin: 15px 0;
+    margin-left: 25px;
+    margin-right: auto;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: none;
+    color: #fff;
+}
+
+
+.logged-user .dropdown-toggle.btn{
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border-color: #ececec;
+}
+
+.logged-user .dropdown-toggle.btn img,
+.logged-user .user-info .user-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.logged-user .dropdown-menu{
+    min-width: 250px;
+}
+.logged-user .user-info{
+    padding: 12px;
+    background-color: #E8F2FF;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+}
+.logged-user .user-info .user-img{
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #2F80ED;
+    margin-right: 15px;
+}
+
+.logged-user .user-info h4{
+    font-size: 14px;
+    font-weight: 600;
+    color: #160102;
+}
+
+.logged-user .user-info p{
+    font-size: 14px;
+    color: #160102;
+}
+
+@media (hover: hover){
+    .main-navigation > ul > li > a:hover{
+    color: #222;
+    }
+}
+
+@media only screen and (max-width: 1199px){
+    header::before{
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 98;
+        opacity: 0;
+        visibility: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .main-navigation{
+        display: block;
+        width: 250px;
+        height: 100%;
+        background-color: #B60044;
+        transition: 0.4s all ease;
+        position: fixed;
+        left: -250px;
+        top: 0;
+        z-index: 99;
+    }
+    .main-navigation > ul{
+        display: block;
+    }
+
+    .nav-toggler{
+        display: inline-block;
+    }
+
+    header.mobile-navigation--open::before{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    header.mobile-navigation--open .main-navigation{
+        left: 0;
+    }
+
+    .nav-close-btn{
+        display: block;
+    }
+
+    .user-controls{
+        margin-left: auto;
+    }
+}
+
+@media screen and (max-width: 479px){
+    .login-employer .button{
+        font-size: 12px;
+        padding: 8px 8px;
+    }
+}
+
+.password_toggle_btn{
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    top: 13px;
+    right: 15px;
+    font-size: 20px;
+    color: #B0B0B0;
+}
+
+
+.details-title{
+    font-size: 24px;
+    color: #4D4637;
+    font-weight: 600;
+    padding-bottom: 20px;
+}
+
+.product-prop{
+    font-size: 16px;
+    line-height: 24px;
+    color: #4D4637;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+
+.card-variety ul{
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+    margin: 0 -4px;
+}
+
+.card-variety ul li{
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.card-variety [type="radio"] + label{
+    width: 84px;
+    height: 64px;
+    padding: 2px;
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid;
+}
+.card-variety [type="radio"]:not(:checked) + label{
+    border-color: #000;
+}
+
+.card-variety [type="radio"] + label img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card-variety [type="radio"]:checked + label{
+    border-color: red;
+}
+
+.card-variety [type="radio"]{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.price-option{
+    margin-bottom: 30px;
+}
+.price-option ul{
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+    margin-left: -7.5px;
+    margin-right: -7.5px;
+    margin-bottom: -15px;
+}
+
+.price-option ul li{
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+    padding-bottom: 15px;
+}
+.price-radio{
+    position: relative;
+    overflow: hidden;
+}
+.price-radio [type="radio"]:not(:checked) + label{
+    width: auto;
+    display: inline-block;
+    border: 1px solid #C8C2B7;
+    font-size: 16px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px;
+    min-width: 70px;
+    text-align: center;
+    color: #898A8D;
+}
+.price-radio [type="radio"]:checked + label{
+    width: auto;
+    min-width: 70px;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #222;
+    font-size: 16px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px;
+    color: #222;
+
+}
+.price-radio [type="radio"]{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+.form-block{
+    padding-bottom: 30px;
+    border-bottom: 1px solid #EEEEEE;
+    margin-bottom: 15px;
+}
+
+.delivery-details .col-2{
+    text-align: right;
+}
+
+
+.gift-card-preview{
+    border: 1px solid #ccc;
+}
+
+.gift-card-preview-img{
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.gift-card-preview-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.gift-card-preview-info h4{
+    font-size: 36px;
+    font-family: 'Roboto-Bold';
+    color: #222;
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #cccc;
+}
+
+.gift-card-preview-info p{
+    padding: 15px;
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid{
+    background-image: none;
+}

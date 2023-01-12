@@ -1,10 +1,12 @@
-
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.css"
 import Queries from "../Services/Queries";
 import { useSelector } from "react-redux";
+
+
+import { Link } from "react-router-dom";
 
 export default function Registration() {
   const { CommonPostApi } = Queries(Registration);
@@ -31,10 +33,26 @@ export default function Registration() {
     await CommonPostApi(values,url);
   }
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12">
-          <Formik
+        
+
+<div class="auth-container section-padding-100">
+        <div class="container">
+          <div class="row form-wrapper">
+            <div class="col-md-5">
+              <div class="form-media">
+                <div class="text-center">
+                  <h4>Welcome!</h4>
+                  <p>Exploring amazing Gift cards!</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="form-border-box">
+                <div class="form-title">
+                  <h4>Signup</h4>
+                  <p>Please enter your details below to continue</p>
+                </div>
+                <Formik
             initialValues={{ email: "", password: "", name: "", confirmPassword: "" }}
             validationSchema={Schema}
             onSubmit={(values) => {
@@ -44,21 +62,16 @@ export default function Registration() {
           >
             {({ touched, errors, isSubmitting, values }) =>
               !isSubmitting ? (
-                <div>
-                  <div className="row mb-5">
-                    <div className="col-lg-12 text-center">
-                      <h1 className="mt-5">Registration Form</h1>
-                    </div>
-                  </div>
+               
                   <Form>
                     <div className="form-group">
-                      <label htmlFor="name">Name</label>
+                      
                       <Field
                         type="text"
                         name="name"
-                        placeholder="Enter name"
+                        placeholder="Name"
                         autoComplete="off"
-                        className={`mt-2 form-control
+                        className={`form-control
                           ${touched.name && errors.name ? "is-invalid" : ""}`}
                       />
 
@@ -69,13 +82,13 @@ export default function Registration() {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="email" className="mt-3">Email</label>
+                      
                       <Field
                         type="email"
                         name="email"
-                        placeholder="Enter email"
+                        placeholder="Email Address"
                         autoComplete="off"
-                        className={`mt-2 form-control
+                        className={`form-control
                           ${touched.email && errors.email ? "is-invalid" : ""}`}
                       />
 
@@ -87,14 +100,12 @@ export default function Registration() {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="password" className="mt-3">
-                        Password
-                      </label>
+                      
                       <Field
                         type="password"
                         name="password"
-                        placeholder="Enter password"
-                        className={`mt-2 form-control
+                        placeholder="Password"
+                        className={`form-control
                           ${touched.password && errors.password
                             ? "is-invalid"
                             : ""
@@ -108,15 +119,11 @@ export default function Registration() {
                         className="invalid-feedback"
                       />
                     </div>
-
                     <div className="form-group">
-                      <label htmlFor="confirmPassword" className="mt-3">
-                        Confirm Password
-                      </label>
                       <Field
                         type="password"
                         name="confirmPassword"
-                        placeholder="Enter Confirm password"
+                        placeholder="Repeat Password"
                         className={`mt-2 form-control
                           ${touched.confirmPassword && errors.confirmPassword
                             ? "is-invalid"
@@ -130,14 +137,15 @@ export default function Registration() {
                       />
                     </div>
 
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-block mt-4"
-                    >
-                      Submit
-                    </button>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <button type="submit" class="button button-purple w-100">Signup</button>
+                      </div>
+                    </div>
+
+                    <p class="goto">Already have an account? <Link to="/login">Login</Link></p>
                   </Form>
-                </div>
+               
               ) : successRes ? (
                 <div>
                   <h1 className="p-3 mt-5">Form Submitted</h1>
@@ -156,8 +164,13 @@ export default function Registration() {
                 ) : null
             }
           </Formik>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
+         
+          
   );
 }
