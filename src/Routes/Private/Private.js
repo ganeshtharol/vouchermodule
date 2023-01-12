@@ -5,16 +5,13 @@ import Header from "../../Layouts/Header";
 
 const Private = () => {
 	return (
-		<div className="main-wrapper">
+		<>
 			<Header />
-			<div className="main-content">
-				<Routes>
-					<Route exact path="/" element={<Listing />} />
-					
-				</Routes>
-			</div>
-		</div>
-	);
+			<Routes>
+				<Route exact path="/" element={<Listing />} />
+
+			</Routes>
+		</>);
 };
 
 export default Private;

@@ -1,10 +1,12 @@
-
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.css"
 import { useDispatch, useSelector } from "react-redux";
 import { setSuccessResponse } from "../../Reducer/mainReducer";
+
+
+import { Link } from "react-router-dom";
 
 export default function Registration() {
   const dispatch = useDispatch();
@@ -29,133 +31,144 @@ export default function Registration() {
     dispatch(setSuccessResponse(values, url));
   }
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12">
-          <Formik
-            initialValues={{ email: "", password: "", name: "", confirmPassword: "" }}
-            validationSchema={Schema}
-            onSubmit={(values) => {
-              handleSubmit(values)
-              alert("Form is validated! Submitting the form...");
-            }}
-          >
-            {({ touched, errors, isSubmitting, values }) =>
-              !isSubmitting ? (
-                <div>
-                  <div className="row mb-5">
-                    <div className="col-lg-12 text-center">
-                      <h1 className="mt-5">Registration Form</h1>
-                    </div>
-                  </div>
-                  <Form>
-                    <div className="form-group">
-                      <label htmlFor="name">Name</label>
-                      <Field
-                        type="text"
-                        name="name"
-                        placeholder="Enter name"
-                        autoComplete="off"
-                        className={`mt-2 form-control
+
+
+    <div class="auth-container section-padding-100">
+      <div class="container">
+        <div class="row form-wrapper">
+          <div class="col-md-5">
+            <div class="form-media">
+              <div class="text-center">
+                <h4>Welcome!</h4>
+                <p>Exploring amazing Gift cards!</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-border-box">
+              <div class="form-title">
+                <h4>Signup</h4>
+                <p>Please enter your details below to continue</p>
+              </div>
+              <Formik
+                initialValues={{ email: "", password: "", name: "", confirmPassword: "" }}
+                validationSchema={Schema}
+                onSubmit={(values) => {
+                  handleSubmit(values)
+                  alert("Form is validated! Submitting the form...");
+                }}
+              >
+                {({ touched, errors, isSubmitting, values }) =>
+                  !isSubmitting ? (
+
+                    <Form>
+                      <div className="form-group">
+
+                        <Field
+                          type="text"
+                          name="name"
+                          placeholder="Name"
+                          autoComplete="off"
+                          className={`form-control
                           ${touched.name && errors.name ? "is-invalid" : ""}`}
-                      />
+                        />
 
-                      <ErrorMessage
-                        component="div"
-                        name="name"
-                        className="invalid-feedback"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="email" className="mt-3">Email</label>
-                      <Field
-                        type="email"
-                        name="email"
-                        placeholder="Enter email"
-                        autoComplete="off"
-                        className={`mt-2 form-control
+                        <ErrorMessage
+                          component="div"
+                          name="name"
+                          className="invalid-feedback"
+                        />
+                      </div>
+                      <div className="form-group">
+
+                        <Field
+                          type="email"
+                          name="email"
+                          placeholder="Email Address"
+                          autoComplete="off"
+                          className={`form-control
                           ${touched.email && errors.email ? "is-invalid" : ""}`}
-                      />
+                        />
 
-                      <ErrorMessage
-                        component="div"
-                        name="email"
-                        className="invalid-feedback"
-                      />
-                    </div>
+                        <ErrorMessage
+                          component="div"
+                          name="email"
+                          className="invalid-feedback"
+                        />
+                      </div>
 
-                    <div className="form-group">
-                      <label htmlFor="password" className="mt-3">
-                        Password
-                      </label>
-                      <Field
-                        type="password"
-                        name="password"
-                        placeholder="Enter password"
-                        className={`mt-2 form-control
+                      <div className="form-group">
+
+                        <Field
+                          type="password"
+                          name="password"
+                          placeholder="Password"
+                          className={`form-control
                           ${touched.password && errors.password
-                            ? "is-invalid"
-                            : ""
-                          }`}
-                      />
-                      {/* <i className="fa fa-lock"></i>
+                              ? "is-invalid"
+                              : ""
+                            }`}
+                        />
+                        {/* <i className="fa fa-lock"></i>
                       <i onClick={Eye} className={`fa ${eye ? "fa-eye-slash" : "fa-eye"}`}></i> */}
-                      <ErrorMessage
-                        component="div"
-                        name="password"
-                        className="invalid-feedback"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="confirmPassword" className="mt-3">
-                        Confirm Password
-                      </label>
-                      <Field
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Enter Confirm password"
-                        className={`mt-2 form-control
+                        <ErrorMessage
+                          component="div"
+                          name="password"
+                          className="invalid-feedback"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <Field
+                          type="password"
+                          name="confirmPassword"
+                          placeholder="Repeat Password"
+                          className={`mt-2 form-control
                           ${touched.confirmPassword && errors.confirmPassword
-                            ? "is-invalid"
-                            : ""
-                          }`}
-                      />
-                      <ErrorMessage
-                        component="div"
-                        name="confirmPassword"
-                        className="invalid-feedback"
-                      />
-                    </div>
+                              ? "is-invalid"
+                              : ""
+                            }`}
+                        />
+                        <ErrorMessage
+                          component="div"
+                          name="confirmPassword"
+                          className="invalid-feedback"
+                        />
+                      </div>
 
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-block mt-4"
-                    >
-                      Submit
-                    </button>
-                  </Form>
-                </div>
-              ) : successRes ? (
-                <div>
-                  <h1 className="p-3 mt-5">Form Submitted</h1>
-                  <div className="alert alert-success mt-3">
-                    {successRes.message}
-                  </div>
-                </div>
-              ) : errorRes ?
-                (
-                  <div>
-                    <h1 className="p-3 mt-5">Error!</h1>
-                    <div className="alert alert-danger mt-3">
-                      {errorRes.message}
+                      <div class="row">
+                        <div class="col-md-6">
+                          <button type="submit" class="button button-purple w-100">Signup</button>
+                        </div>
+                      </div>
+
+                      <p class="goto">Already have an account? <Link to="/login">Login</Link></p>
+                    </Form>
+
+                  ) : successRes ? (
+                    <div>
+                      <h1 className="p-3 mt-5">Form Submitted</h1>
+                      <div className="alert alert-success mt-3">
+                        {successRes.message}
+                      </div>
                     </div>
-                  </div>
-                ) : null
-            }
-          </Formik>
+                  ) : errorRes ?
+                    (
+                      <div>
+                        <h1 className="p-3 mt-5">Error!</h1>
+                        <div className="alert alert-danger mt-3">
+                          {errorRes.message}
+                        </div>
+                      </div>
+                    ) : null
+                }
+              </Formik>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+
+
   );
 }
