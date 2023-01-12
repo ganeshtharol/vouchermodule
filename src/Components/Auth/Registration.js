@@ -5,10 +5,13 @@ import "bootstrap/dist/css/bootstrap.css"
 import { useDispatch, useSelector } from "react-redux";
 import { setSuccess, setSuccessResponse } from "../../Reducer/mainReducer";
 
+import { useState } from "react";
+
 
 import { Link } from "react-router-dom";
 
 export default function Registration() {
+
   const dispatch = useDispatch();
   const successRes = useSelector((state) => state.main.success);
   const errorRes = useSelector((state) => state.main.error);
@@ -25,6 +28,27 @@ export default function Registration() {
       .oneOf([Yup.ref('password'), null], 'Passwords must match')
       .required("Confirm Password is required"),
   });
+
+
+  const [passwordType, setPasswordType] = useState('password');
+  const [repeatPasswordType, setRepeatPasswordType] = useState('password');
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text")
+      return;
+    }
+    setPasswordType("password")
+  }
+
+
+  const toggleRepeatPassword = () => {
+    if (repeatPasswordType === "password") {
+      setRepeatPasswordType("text")
+      return;
+    }
+    setRepeatPasswordType("password")
+  }
 
   const handleSubmit = async (values) => {
     const url = `${process.env.REACT_APP_API_URL}auth/signup`;
@@ -105,10 +129,10 @@ export default function Registration() {
                         />
                       </div>
 
-                      <div className="form-group">
+                      <div className="form-group position-relative">
 
                         <Field
-                          type="password"
+                          type={passwordType}
                           name="password"
                           placeholder="Password"
                           className={`form-control
@@ -117,6 +141,11 @@ export default function Registration() {
                               : ""
                             }`}
                         />
+                        <button className='password_toggle_btn' onClick={togglePassword} type="button">
+                          {
+                            passwordType === "password" ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-slash"></i>
+                          }
+                        </button>
                         {/* <i className="fa fa-lock"></i>
                       <i onClick={Eye} className={`fa ${eye ? "fa-eye-slash" : "fa-eye"}`}></i> */}
                         <ErrorMessage
@@ -125,9 +154,9 @@ export default function Registration() {
                           className="invalid-feedback"
                         />
                       </div>
-                      <div className="form-group">
+                      <div className="form-group position-relative">
                         <Field
-                          type="password"
+                          type={repeatPasswordType}
                           name="confirmPassword"
                           placeholder="Repeat Password"
                           className={`mt-2 form-control
@@ -136,6 +165,11 @@ export default function Registration() {
                               : ""
                             }`}
                         />
+                        <button className='password_toggle_btn' onClick={toggleRepeatPassword} type="button">
+                          {
+                            repeatPasswordType === "password" ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-slash"></i>
+                          }
+                        </button>
                         <ErrorMessage
                           component="div"
                           name="confirmPassword"

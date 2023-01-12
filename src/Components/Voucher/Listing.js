@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { getVoucherListResponse } from '../../Reducer/voucherReducer';
 
+import Pagination from 'react-bootstrap/Pagination';
+
 const Listing = () => {
     const dispatch = useDispatch();
     const voucherList = useSelector((state)=> state.voucher.voucherlist )
@@ -11,6 +13,17 @@ const Listing = () => {
         const url = `${process.env.REACT_APP_API_URL}voucher/list`;
         dispatch(getVoucherListResponse(url));
     },[])
+
+
+    let active = 2;
+    let items = [];
+    for (let number = 1; number <= 5; number++) {
+    items.push(
+        <Pagination.Item key={number} active={number === active}>
+        {number}
+        </Pagination.Item>,
+    );
+    }
   
     return (
       <>
@@ -43,6 +56,11 @@ const Listing = () => {
                           })
                       }
                   </div>
+                  <Pagination>
+                        <Pagination.Prev />   
+                        {items}
+                        <Pagination.Next />
+                    </Pagination>
               </div>
           </section>
       </div>
