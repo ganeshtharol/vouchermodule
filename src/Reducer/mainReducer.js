@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CommonPostApi } from "../Services/Actions";
+import { AuthApi } from "../Services/Actions";
 
 const mainSlice = createSlice({
   name: "mainSlice",
@@ -7,7 +7,7 @@ const mainSlice = createSlice({
     success: null,
     error: null,
     user: null,
-    isAuthenticated: true
+    isAuthenticated: false
   },
   reducers: {
     setSuccess: (state, action) => {
@@ -29,12 +29,13 @@ export default mainSlice.reducer;
 
 export const setSuccessResponse = (body, url) => async (dispatch) => {
   try {
-    let res = await CommonPostApi(body, url)
+    let res = await AuthApi(body, url)
     if (res?.status === 200) {
-      dispatch(setSuccess(res?.data));
-      dispatch(setUser(res?.data?.data));
-      localStorage.setItem('user', res?.data?.data);
-      localStorage.setItem('token', res?.data?.data?.token);
+      dispatch(setSuccess(res.data));
+      dispatch(setIsAuthenticated(true));
+      dispatch(setUser(res.data.data));
+      localStorage.setItem('user', JSON.stringify(res.data.data));
+      localStorage.setItem('token', res.data.data.token);
     }
     else {
       dispatch(setError(res?.response?.data))
@@ -43,7 +44,6 @@ export const setSuccessResponse = (body, url) => async (dispatch) => {
     dispatch(setError(error))
   }
 }
-
 export const setUserResponse = async (data, dispatch) => {
   try {
     dispatch(setUser(data))
@@ -51,3 +51,15 @@ export const setUserResponse = async (data, dispatch) => {
     dispatch(setUser(null))
   }
 }
+
+  export const setLogout = () => async (dispatch) => {
+        console.log("logout");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        dispatch(setIsAuthenticated(false));
+        dispatch(setSuccess(null));
+        dispatch(setError({message:"Logout successfull"}))
+        dispatch(setUser(null));
+        // navigate('/register')
+      }
+

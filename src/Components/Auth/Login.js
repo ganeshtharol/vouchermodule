@@ -1,16 +1,17 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.css"
 import { useDispatch, useSelector } from "react-redux";
-import { setSuccessResponse } from "../../Reducer/mainReducer";
-import { Link } from "react-router-dom";
+import { setSuccess, setSuccessResponse } from "../../Reducer/mainReducer";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const successRes = useSelector((state) => state.main.success);
   const errorRes = useSelector((state) => state.main.error);
   const [passwordType, setPasswordType] = useState('password');
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const LoginSchema = Yup.object().shape({
@@ -35,8 +36,17 @@ export default function Login() {
   const handleSubmit = async (values) => {
     const url = `${process.env.REACT_APP_API_URL}auth/login`;
     dispatch(setSuccessResponse(values, url));
-
   }
+
+  useEffect(() => {
+    console.log(successRes);
+    if (successRes) {
+      dispatch(setSuccess(null))
+      navigate('/list')
+      // setTimeout(()=>{
+      // },2000)
+    }
+}, [successRes])  // eslint-disable-next-line
 
   return (
     <div class="auth-container section-padding-100">
@@ -61,7 +71,6 @@ export default function Login() {
                 validationSchema={LoginSchema}
                 onSubmit={(values) => {
                   handleSubmit(values)
-                  alert("Form is validated! Submitting the form...");
                 }}
               >
                 {({ touched, errors, isSubmitting, values }) =>
@@ -106,7 +115,6 @@ export default function Login() {
                           className="invalid-feedback"
                         />
                       </div>
-
 
                       <div class="row">
                         <div class="col-md-6">

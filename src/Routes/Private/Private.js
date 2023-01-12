@@ -9,7 +9,7 @@ const Private = () => {
 			<Header />
 			<Routes>
 				<Route exact path="/" element={<Listing />} />
-
+				<Route exact path="/list" element={<Listing />} />
 			</Routes>
 		</>);
 };

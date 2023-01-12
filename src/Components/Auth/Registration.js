@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.css"
 import { useDispatch, useSelector } from "react-redux";
-import { setSuccessResponse } from "../../Reducer/mainReducer";
+import { setSuccess, setSuccessResponse } from "../../Reducer/mainReducer";
 
 
 import { Link } from "react-router-dom";
@@ -30,8 +30,17 @@ export default function Registration() {
     const url = `${process.env.REACT_APP_API_URL}auth/signup`;
     dispatch(setSuccessResponse(values, url));
   }
-  return (
 
+  useEffect(() => {
+    console.log(successRes);
+    if (successRes) {
+      setTimeout(() => {
+        dispatch(setSuccess(null))
+      }, 2000)
+    }
+  }, [successRes])
+
+  return (
 
     <div class="auth-container section-padding-100">
       <div class="container">
@@ -55,7 +64,6 @@ export default function Registration() {
                 validationSchema={Schema}
                 onSubmit={(values) => {
                   handleSubmit(values)
-                  alert("Form is validated! Submitting the form...");
                 }}
               >
                 {({ touched, errors, isSubmitting, values }) =>

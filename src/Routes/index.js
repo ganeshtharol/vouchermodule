@@ -3,31 +3,33 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import Private from './Private/Private';
 import Public from './Public/Public';
-import { setIsAuthenticated } from '../Reducer/mainReducer'
+import { setIsAuthenticated,setSuccess } from '../Reducer/mainReducer'
+import history from '../history';
 
 export const Index = () => {
     const dispatch = useDispatch();
-    const [authrize, setAuthrize] = useState(false);
+    const [authrize, setAuthrize] = useState(undefined);
     const authUser = useSelector((state) => state.main.isAuthenticated);
     useEffect(() => {
-        if (authUser) {
-            if (localStorage.getItem('token') && localStorage.getItem('token') !== '' && localStorage.getItem('user') && localStorage.getItem('user') !== '') {
-                dispatch(setIsAuthenticated(true));
-                setAuthrize(true)
-            } else {
-                setAuthrize(false);
-            }
+        console.log(authUser);
+        if (localStorage.getItem('token') && localStorage.getItem('token') !== '' && localStorage.getItem('user') && localStorage.getItem('user') !== '') {
+            dispatch(setIsAuthenticated(true));
+            dispatch(setSuccess(localStorage.getItem('user')));
+            setAuthrize(true)
         } else {
-            setAuthrize(false)
+            setAuthrize(false);
         }
     }, [authUser]) // eslint-disable-next-line
     return (
-        <Router>
+        <Router history={history}>
             {
-                authrize ?
-                    <Private />
+                authrize != undefined ?
+                    authrize ?
+                        <Private />
+                        :
+                        <Public />
                     :
-                    <Public />
+                    null
             }
 
         </Router>
