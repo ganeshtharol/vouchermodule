@@ -981,3 +981,20 @@ header .brand-logo{
 .order-summary-details h4 span{
     margin-left: auto;
 }
+
+.pagination{
+    margin-top: 40px;
+}
+
+.active > .page-link, .page-link.active{
+    background-color: #B60044;
+    border-color: #B60044;
+}
+
+.page-link{
+    color: #B60044;
+}
+
+.page-link:hover{
+    color: #222;
+}
