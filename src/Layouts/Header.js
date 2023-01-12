@@ -54,7 +54,7 @@ function Header() {
                 </div>
                 <ul className="user-controls">
                     <li>
-                        <Link to="/" className="notification">
+                        <Link to="/cart" className="notification">
                             <span className="count">5</span>
                             <i className="bi bi-cart"></i>
                         </Link>

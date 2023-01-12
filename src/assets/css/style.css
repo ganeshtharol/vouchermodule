@@ -61,13 +61,6 @@
 #   Common Css 
 ------------------------------------*/
 
-:root{
-    --plyr-color-main: #B60044;
-    --plyr-video-controls-background: #001821;
-    --plyr-audio-controls-background: #001821;
-    --plyr-control-padding:  50px;
-}
-
 @media (prefers-reduced-motion: no-preference) {
     :root {
         scroll-behavior: auto;
@@ -221,7 +214,7 @@ b{
 
 .button-purple {
     background-color: #B60044;
-    color: #E9D800;
+    color: #FFF;
     border-color: #B60044;
 }
 
@@ -309,235 +302,6 @@ textarea.form-control {
     resize: none;
 }
 
-/*-------------------------------
-#   Login Page
--------------------------------*/
-
-
-.auth-container{
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-}
-
-.form-title{
-    padding-bottom: 25px;
-}
-.form-title h4{
-    font-size: 40px;
-    font-family: "Roboto-Medium";
-    color: #000917;
-    padding-bottom: 5px;
-}
-.form-title p{
-    font-family: "Roboto-Light";
-}
-
-.form-wrapper{
-    border: 1px solid #ccc;
-    padding: 24px 12px;
-    background-color: #fff;
-}
-
-.form-wrapper .form-media{
-    width: 100%;
-    /*height: 511px;*/
-    height: 100%;
-    background: #FF416C;
-    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-    background: linear-gradient(to right, #FF4B2B, #FF416C);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.form-wrapper .form-media > img{
-    align-self: center;
-}
-
-.form-media .text-center{
-    padding: 30px;
-}
-.form-media .text-center img{
-    margin-bottom: 35px;
-}
-.form-media h4{
-    font-size: 36px;
-    font-family: "Roboto-Medium";
-    color: #fff;
-}
-.form-media p{
-    font-size: 13px;
-    font-family: "Roboto-Medium";
-    color: #fff;
-}
-
-.form-border-box,
-.jobs-list{
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 35px 35px;
-    height: 100%;
-
-}
-
-.forgot-pass{
-    margin-bottom: 50px;
-}
-.forgot-pass a{
-    font-size: 16px;
-    font-family: "Roboto-Medium";
-    color: #BC004B;
-}
-
-.password-group{
-    position: relative;
-}
-
-.password-group .show-pass-toggle{
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-.password-group .show-pass-toggle .eye-closed{
-    display: none;
-}
-.social-login{
-    text-align: center;
-    margin-top: 40px;
-}
-.social-login .footer-social{
-    margin-bottom: 0;
-}
-.social-login h4{
-    display: inline-block;
-    font-size: 14px;
-    position: relative;
-    margin-bottom: 15px;
-    color: #8a8a8a;
-    text-transform: uppercase;
-}
-
-.social-login h4::before{
-    content: "";
-    width: 50px;
-    height: 1px;
-    background-color: #8a8a8a;
-    top: 50%;
-    position: absolute;
-    transform: translateY(-50%);
-    left: -60px;
-}
-
-.social-login h4::after{
-    content: "";
-    width: 50px;
-    height: 1px;
-    background-color: #8a8a8a;
-    top: 50%;
-    position: absolute;
-    transform: translateY(-50%);
-    right: -60px;
-}
-
-.social-login .footer-social li a{
-    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.2);
-    border-radius: 50%;
-}
-
-.goto{
-    font-size: 16px;
-    font-weight: 500;
-    color: #545454;
-    margin-top: 30px;
-}
-
-.goto > a {
-    color: #B60044;
-}
-
-
-.section-title{
-    padding-bottom: 30px;
-}
-.section-title h4{
-    font-size: 32px;
-    font-weight: 600;
-    color: #222;
-}
-
-.product{
-    display: block;
-    position: relative;
-    cursor: pointer;
-    border: 1px solid #ccc;
-}
-
-.product-media{
-    position: relative;
-}
-.product-media .wishlist-btn{
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    z-index: 2;
-}
-.product-img{
-    width: 100%;
-    height: 260px;
-    overflow: hidden;
-    background-color: #FFF;
-}
-.product-img img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-
-}
-.product-details{
-    padding: 15px 10px;
-}
-.product-price .offer-price{
-    font-size: 18px;
-    line-height: 26px;
-    color: #4D4637;
-    font-family: "Malyalam-Bold";
-    padding-right: 10px;
-}
-.product-price .actual-price{
-    font-size: 14px;
-    line-height: 26px;
-    color: #898A8D;
-    padding-right: 10px;
-    text-decoration: line-through;
-}
-
-.product-category{
-    font-size: 14px;
-    color: #C8C2B7;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
-    line-height: 16px;
-    padding-bottom: 4px;
-}
-
-.product-title{
-    font-size: 16px;
-    line-height: 24px;
-    color: #4D4637;
-    display: block;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding-bottom: 5px;
-}
-
-
-
 
 /*---------------------------------
 # Header CSS
@@ -569,28 +333,6 @@ header.navbar-sticky{
     transition: none;
 }
 
-header.navbar-sticky-moved-up{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    background-color: #FFF;
-    z-index: 999;
-    margin-top: -140px;
-    box-shadow: 0px 1px 7px rgba(0,0,0,0.1);
-}
-
-header.navbar-sticky-transitioned{
-    -webkit-transition: .3s;
-    transition: .3s;
-}
-
-header.navbar-sticky-on{
-    margin-top: 0;
-    -webkit-transition: .3s;
-    transition: .3s;
-}
-
 header > .container{
     display: flex;
     max-width: 1634px;
@@ -605,37 +347,6 @@ header .brand-logo{
     font-weight: 600;
     text-transform: uppercase;
     color: #fff;
-}
-
-.header-search{
-    margin-left: 20px;
-    margin-right: auto;
-}
-
-.header-search .form-group{
-    margin: 0;
-    position: relative;
-}
-
-.header-search .form-control {
-    height: 46px;
-    padding-left: 38px;
-    background-color: transparent;
-}
-
-.header-search .form-select{
-    height: 46px;
-    background-color: transparent;
-}
-
-.header-search .form-group::before{
-    position: absolute;
-    top: 15px;
-    left: 15px;
-}
-
-.header-search .search::before{
-    /* content: url('../../images/icons/ic-search.svg'); */
 }
 
 .main-navigation{
@@ -828,6 +539,164 @@ header .brand-logo{
     }
 }
 
+/*-------------------------------
+#   Login Page
+-------------------------------*/
+
+.auth-container{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.form-title{
+    padding-bottom: 25px;
+}
+.form-title h4{
+    font-size: 40px;
+    font-family: "Roboto-Medium";
+    color: #000917;
+    padding-bottom: 5px;
+}
+.form-title p{
+    font-family: "Roboto-Light";
+}
+
+.form-wrapper{
+    border: 1px solid #ccc;
+    padding: 24px 12px;
+    background-color: #fff;
+}
+
+.form-wrapper .form-media{
+    width: 100%;
+    height: 100%;
+    background: #FF416C;
+    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+    background: linear-gradient(to right, #FF4B2B, #FF416C);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-media .text-center{
+    padding: 30px;
+}
+
+.form-media h4{
+    font-size: 36px;
+    font-family: "Roboto-Medium";
+    color: #fff;
+}
+.form-media p{
+    font-size: 13px;
+    font-family: "Roboto-Medium";
+    color: #fff;
+}
+
+.form-border-box,
+.jobs-list{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 35px 35px;
+    height: 100%;
+}
+
+.forgot-pass{
+    margin-bottom: 50px;
+}
+.forgot-pass a{
+    font-size: 16px;
+    font-family: "Roboto-Medium";
+    color: #BC004B;
+}
+
+.password-group{
+    position: relative;
+}
+
+.password-group .show-pass-toggle{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.password-group .show-pass-toggle .eye-closed{
+    display: none;
+}
+
+
+.goto{
+    font-size: 16px;
+    font-weight: 500;
+    color: #545454;
+    margin-top: 30px;
+}
+
+.goto > a {
+    color: #B60044;
+}
+
+
+.section-title{
+    padding-bottom: 30px;
+}
+.section-title h4{
+    font-size: 32px;
+    font-weight: 600;
+    color: #222;
+}
+
+.product{
+    display: block;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.product-media{
+    position: relative;
+}
+.product-media .wishlist-btn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 2;
+}
+.product-img{
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    background-color: #FFF;
+}
+.product-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+}
+.product-details{
+    padding: 15px 10px;
+}
+.product-price .offer-price{
+    font-size: 18px;
+    line-height: 26px;
+    color: #4D4637;
+    font-family: "Malyalam-Bold";
+    padding-right: 10px;
+}
+.product-title{
+    font-size: 16px;
+    line-height: 24px;
+    color: #4D4637;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+
 .password_toggle_btn{
     background-color: transparent;
     border: 0;
@@ -874,9 +743,10 @@ header .brand-logo{
     overflow: hidden;
     display: inline-block;
     border: 1px solid;
+    cursor: pointer;
 }
 .card-variety [type="radio"]:not(:checked) + label{
-    border-color: #000;
+    border-color: #CCCCCC;
 }
 
 .card-variety [type="radio"] + label img{
@@ -887,7 +757,7 @@ header .brand-logo{
 }
 
 .card-variety [type="radio"]:checked + label{
-    border-color: red;
+    border-color: #B60044;
 }
 
 .card-variety [type="radio"]{
@@ -917,10 +787,13 @@ header .brand-logo{
     position: relative;
     overflow: hidden;
 }
+.price-radio [type="radio"] + label{
+    cursor: pointer;
+}
 .price-radio [type="radio"]:not(:checked) + label{
     width: auto;
     display: inline-block;
-    border: 1px solid #C8C2B7;
+    border: 1px solid #CCCCCC;
     font-size: 16px;
     height: 36px;
     line-height: 36px;
@@ -934,7 +807,7 @@ header .brand-logo{
     min-width: 70px;
     text-align: center;
     display: inline-block;
-    border: 1px solid #222;
+    border: 1px solid #B60044;
     font-size: 16px;
     height: 36px;
     line-height: 36px;
@@ -991,4 +864,120 @@ header .brand-logo{
 
 .form-control.is-invalid, .was-validated .form-control:invalid{
     background-image: none;
+}
+
+.custom-price .form-control{
+    max-width: 160px;
+    padding: 5px;
+    height: 36px;
+    font-size: 16px;
+}
+.order-success{
+    text-align: center;
+    padding-bottom: 15px;
+}
+.order-success h4{
+    font-size: 28px;
+    color: #52a852;
+    font-family: "Roboto-Bold";
+    padding-bottom: 5px;
+
+}
+
+/*==============Cart Details Page=================*/
+
+
+.cart-item-list ul li{
+    margin-bottom: 20px;
+}
+.cart-item-list ul li:last-child{
+    margin-bottom: 0;
+}
+
+.item-product {
+    padding: 15px 15px;
+    border: 1px solid #EEEEEE;
+}
+.item-product .main{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.item-info {
+    flex: 0 0 75%;
+    max-width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item-meta-data {
+    flex: 0 0 25%;
+    max-width: 25%;
+    text-align: right;
+}
+
+.item-info figure {
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border: 1px solid #DBDAD9;
+    border-radius: 1px;
+    margin: 0;
+}
+
+.item-info figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.item-info figcaption {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.item-info h4{
+    font-size: 16px;
+    line-height: 24px;
+    color: #4D4637;
+    padding-bottom: 5px;
+}
+.order-data{
+    font-size: 14px;
+    line-height: 24px;
+    color: #898A8D;
+}
+.order-data b{
+    color: #5F5F5F;
+    padding-right: 5px;
+}
+.cart-item-price{
+    font-size: 22px;
+    color: #242019;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+.order-summary-details {
+        border: 1px solid #ECECEC;
+    padding: 25px 0;
+    margin-top: 30px;
+}
+
+.order-summary-details .total{
+    padding: 0 20px;
+}
+
+.order-summary-details h4{
+    font-size: 16px;
+    font-family: "Roboto-Bold";
+    color: #100F0F;
+    display: flex;
+    max-width: 100%;
+}
+.order-summary-details h4 span{
+    margin-left: auto;
 }
