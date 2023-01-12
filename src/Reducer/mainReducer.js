@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { CommonPostApi } from "../Services/Actions";
 
 const mainSlice = createSlice({
   name: "mainSlice",
   initialState: {
     success: null,
     error: null,
-    user: null
+    user: null,
+    isAuthenticated: true
   },
   reducers: {
     setSuccess: (state, action) => {
@@ -16,20 +18,26 @@ const mainSlice = createSlice({
     },
     setUser: (state, action) => {
       state.user = action.payload
+    },
+    setIsAuthenticated: (state, action) => {
+      state.isAuthenticated = action.payload
     }
   }
 })
-const { setSuccess, setError, setUser } = mainSlice.actions;
+export const { setSuccess, setError, setUser, setIsAuthenticated } = mainSlice.actions;
 export default mainSlice.reducer;
 
-export const setSuccessResponse = async (data, dispatch) => {
+export const setSuccessResponse = (body, url) => async (dispatch) => {
   try {
-    if (data?.statusCode == 200) {
-      
-      dispatch(setSuccess(data))
+    let res = await CommonPostApi(body, url)
+    if (res?.status === 200) {
+      dispatch(setSuccess(res?.data));
+      dispatch(setUser(res?.data?.data));
+      localStorage.setItem('user', res?.data?.data);
+      localStorage.setItem('token', res?.data?.data?.token);
     }
     else {
-      dispatch(setError(data))
+      dispatch(setError(res?.response?.data))
     }
   } catch (error) {
     dispatch(setError(error))
