@@ -4,15 +4,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.css"
 import { useDispatch, useSelector } from "react-redux";
-import { setSuccess, setSuccessResponse } from "../../Reducer/mainReducer";
-import { Link, useNavigate } from "react-router-dom";
+import { setError, setSuccess, setSuccessResponse } from "../../Reducer/mainReducer";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const successRes = useSelector((state) => state.main.success);
   const errorRes = useSelector((state) => state.main.error);
   const [passwordType, setPasswordType] = useState('password');
-  const navigate = useNavigate();
-
   const dispatch = useDispatch();
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -39,14 +37,20 @@ export default function Login() {
   }
 
   useEffect(() => {
-    console.log(successRes);
     if (successRes) {
-      dispatch(setSuccess(null))
-      navigate('/list')
-      // setTimeout(()=>{
-      // },2000)
+      setTimeout(() => {
+        dispatch(setSuccess(null))
+        dispatch(setError(null))
+       
+      }, 2000)
     }
-}, [successRes])  // eslint-disable-next-line
+    if (errorRes) {
+      setTimeout(() => {
+        dispatch(setError(null))
+       
+      }, 2000)
+    }
+  }, [successRes,errorRes])
 
   return (
     <div class="auth-container section-padding-100">
@@ -65,6 +69,12 @@ export default function Login() {
               <div class="form-title">
                 <h4>Login</h4>
                 <p>Please enter your details below to continue</p>
+                {errorRes && <div>
+                  <h1 className="p-3 mt-5">Error!</h1>
+                  <div className="alert alert-danger mt-3">
+                    {errorRes.message}
+                  </div>
+                </div>}
               </div>
               <Formik
                 initialValues={{ email: "", password: "" }}
@@ -74,7 +84,7 @@ export default function Login() {
                 }}
               >
                 {({ touched, errors, isSubmitting, values }) =>
-                  !isSubmitting ? (
+                  (
                     <Form>
                       <div className="form-group">
                         <Field
@@ -126,22 +136,7 @@ export default function Login() {
 
                     </Form>
 
-                  ) : successRes ? (
-                    <div>
-                      <h1 className="p-3 mt-5">Form Submitted</h1>
-                      <div className="alert alert-success mt-3">
-                        {successRes.message}
-                      </div>
-                    </div>
-                  ) : errorRes ?
-                    (
-                      <div>
-                        <h1 className="p-3 mt-5">Error!</h1>
-                        <div className="alert alert-danger mt-3">
-                          {errorRes.message}
-                        </div>
-                      </div>
-                    ) : null
+                  )
                 }
               </Formik>
             </div>

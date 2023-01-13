@@ -3,24 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 import classNames from "classnames";
 import Dropdown from 'react-bootstrap/Dropdown'
-import { setError, setIsAuthenticated, setSuccess, setUser,setLogout } from "../Reducer/mainReducer";
+import { setError, setLogout } from "../Reducer/mainReducer";
 import { useDispatch, useSelector } from "react-redux";
 
 function Header() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const user = useSelector((state) => state.main.user);
-    // const setLogout = () => {
-    //     console.log("logout");
-    //     localStorage.removeItem("token");
-    //     localStorage.removeItem("user");
-    //     dispatch(setIsAuthenticated(false));
-    //     dispatch(setSuccess(null));
-    //     dispatch(setError({message:"Logout successfull"}))
-    //     dispatch(setUser(null));
-    //     navigate('/register')
-    //   }
-    console.log(user);
+    const error = useSelector((state) => state.main.error);
     const useClickOutside = (element, callback) => {
         useEffect(() => {
             const handleClickOutside = (event) => {
@@ -47,8 +36,17 @@ function Header() {
         setIsMobileNavOpen(false);
     }
 
+    
     // Hide Mobile Sidebar on click outside of navigation
     useClickOutside(mainNavRef, () => setIsMobileNavOpen(false));
+
+    useEffect(() => {
+        if (error) {
+          setTimeout(()=>{
+            dispatch(setError(null))
+          },2000)
+        }
+    }, [error])  // eslint-disable-next-line
 
     return (
         <header className={
@@ -88,7 +86,7 @@ function Header() {
                                     <h4>{user?.name}</h4>
                                 </div>
                             </div>
-                            <button type="button" onClick={() => { dispatch(setLogout())}} className="dropdown-item">Logout</button>
+                            <button type="button" onClick={() => { dispatch(setLogout()) }} className="dropdown-item">Logout</button>
                         </Dropdown.Menu>
                     </Dropdown>
                     <li className="nav-toggler">

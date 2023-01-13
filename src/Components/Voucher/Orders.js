@@ -1,26 +1,51 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setError, setIsAuthenticated, setSuccess, setUser } from "../../Reducer/mainReducer";
+import { getOrderListResponse } from "../../Reducer/orderReducer";
+
 function CartList() {
+    const dispatch = useDispatch();
+    const orderList = useSelector((state) => state.order.orderList);
+    const error = useSelector((state) => state.main.error)
+    useEffect(() => {
+        const url = `${process.env.REACT_APP_API_URL}order/list`;
+        dispatch(getOrderListResponse({},url));
+    }, [])
+    useEffect(() => {
+        if(error?.statusCode === 401)
+        {
+         dispatch(setIsAuthenticated(false));
+         dispatch(setSuccess(null));
+         dispatch(setError({message:error?.message}))
+         dispatch(setUser(null));
+         localStorage.removeItem("token");
+         localStorage.removeItem("user");
+        }
+     }, [error])
     return (
         <div className="main-content">
             <section className="section-padding-40">
                 <div className="container">
                     <div className="cart-item-list">
                         <div className="section-title">
-                            <h4>Cart Item</h4>
+                            <h4>Orders</h4>
                         </div>
                         <ul>
                             {
-                                [...Array(3)].map((item, idx) => {
+                                orderList.length > 0 && orderList.map((item, idx) => {
                                     return(
                                         <li className="item-product" key={idx}>
                                             <div className="main">
                                                 <div className="item-info">
-                                                    <figure><img src="https://m.media-amazon.com/images/I/4178FMimIyL._SR80,60_.jpg" alt="" /></figure>
+                                                    <figure><img src={item?.styleImg} alt="" /></figure>
                                                     <figcaption>
-                                                        <h4>Voucher Pay eGift Card</h4>
+                                                        <h4>{item?.voucherDetail?.title}</h4>
                                                     </figcaption>
                                                 </div>
                                                 <div className="item-meta-data">
-                                                    <h4 className="cart-item-price">$30.00</h4>
+                                                    <h5>Code - {item?.vouCode}</h5>
+                                                    <h5>Qty - {item?.quantity}</h5>
+                                                    <h4 className="cart-item-price">₹{item?.amount}</h4>
                                                 </div>
                                             </div>
                                         </li>

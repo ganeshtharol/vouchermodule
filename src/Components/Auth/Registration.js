@@ -3,16 +3,17 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.css"
 import { useDispatch, useSelector } from "react-redux";
-import { setSuccess, setSuccessResponse } from "../../Reducer/mainReducer";
+import { setError, setSuccess, setSuccessResponse } from "../../Reducer/mainReducer";
 
 import { useState } from "react";
 
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Registration() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const successRes = useSelector((state) => state.main.success);
   const errorRes = useSelector((state) => state.main.error);
   const Schema = Yup.object().shape({
@@ -53,16 +54,24 @@ export default function Registration() {
   const handleSubmit = async (values) => {
     const url = `${process.env.REACT_APP_API_URL}auth/signup`;
     dispatch(setSuccessResponse(values, url));
+    navigate('/')
   }
 
   useEffect(() => {
-    console.log(successRes);
     if (successRes) {
       setTimeout(() => {
         dispatch(setSuccess(null))
+        dispatch(setError(null))
+       
       }, 2000)
     }
-  }, [successRes])
+    if (errorRes) {
+      setTimeout(() => {
+        dispatch(setError(null))
+       
+      }, 2000)
+    }
+  }, [successRes,errorRes])
 
   return (
 
@@ -82,6 +91,12 @@ export default function Registration() {
               <div class="form-title">
                 <h4>Signup</h4>
                 <p>Please enter your details below to continue</p>
+                {errorRes && <div>
+                  <h1 className="p-3 mt-5">Error!</h1>
+                  <div className="alert alert-danger mt-3">
+                    {errorRes.message}
+                  </div>
+                </div>}
               </div>
               <Formik
                 initialValues={{ email: "", password: "", name: "", confirmPassword: "" }}
@@ -91,117 +106,102 @@ export default function Registration() {
                 }}
               >
                 {({ touched, errors, isSubmitting, values }) =>
-                  !isSubmitting ? (
+                (
 
-                    <Form>
-                      <div className="form-group">
+                  <Form>
+                    <div className="form-group">
 
-                        <Field
-                          type="text"
-                          name="name"
-                          placeholder="Name"
-                          autoComplete="off"
-                          className={`form-control
+                      <Field
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        autoComplete="off"
+                        className={`form-control
                           ${touched.name && errors.name ? "is-invalid" : ""}`}
-                        />
+                      />
 
-                        <ErrorMessage
-                          component="div"
-                          name="name"
-                          className="invalid-feedback"
-                        />
-                      </div>
-                      <div className="form-group">
+                      <ErrorMessage
+                        component="div"
+                        name="name"
+                        className="invalid-feedback"
+                      />
+                    </div>
+                    <div className="form-group">
 
-                        <Field
-                          type="email"
-                          name="email"
-                          placeholder="Email Address"
-                          autoComplete="off"
-                          className={`form-control
+                      <Field
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        autoComplete="off"
+                        className={`form-control
                           ${touched.email && errors.email ? "is-invalid" : ""}`}
-                        />
+                      />
 
-                        <ErrorMessage
-                          component="div"
-                          name="email"
-                          className="invalid-feedback"
-                        />
-                      </div>
+                      <ErrorMessage
+                        component="div"
+                        name="email"
+                        className="invalid-feedback"
+                      />
+                    </div>
 
-                      <div className="form-group position-relative">
+                    <div className="form-group position-relative">
 
-                        <Field
-                          type={passwordType}
-                          name="password"
-                          placeholder="Password"
-                          className={`form-control
+                      <Field
+                        type={passwordType}
+                        name="password"
+                        placeholder="Password"
+                        className={`form-control
                           ${touched.password && errors.password
-                              ? "is-invalid"
-                              : ""
-                            }`}
-                        />
-                        <button className='password_toggle_btn' onClick={togglePassword} type="button">
-                          {
-                            passwordType === "password" ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-slash"></i>
-                          }
-                        </button>
-                        {/* <i className="fa fa-lock"></i>
+                            ? "is-invalid"
+                            : ""
+                          }`}
+                      />
+                      <button className='password_toggle_btn' onClick={togglePassword} type="button">
+                        {
+                          passwordType === "password" ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-slash"></i>
+                        }
+                      </button>
+                      {/* <i className="fa fa-lock"></i>
                       <i onClick={Eye} className={`fa ${eye ? "fa-eye-slash" : "fa-eye"}`}></i> */}
-                        <ErrorMessage
-                          component="div"
-                          name="password"
-                          className="invalid-feedback"
-                        />
-                      </div>
-                      <div className="form-group position-relative">
-                        <Field
-                          type={repeatPasswordType}
-                          name="confirmPassword"
-                          placeholder="Repeat Password"
-                          className={`mt-2 form-control
+                      <ErrorMessage
+                        component="div"
+                        name="password"
+                        className="invalid-feedback"
+                      />
+                    </div>
+                    <div className="form-group position-relative">
+                      <Field
+                        type={repeatPasswordType}
+                        name="confirmPassword"
+                        placeholder="Repeat Password"
+                        className={`mt-2 form-control
                           ${touched.confirmPassword && errors.confirmPassword
-                              ? "is-invalid"
-                              : ""
-                            }`}
-                        />
-                        <button className='password_toggle_btn' onClick={toggleRepeatPassword} type="button">
-                          {
-                            repeatPasswordType === "password" ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-slash"></i>
-                          }
-                        </button>
-                        <ErrorMessage
-                          component="div"
-                          name="confirmPassword"
-                          className="invalid-feedback"
-                        />
-                      </div>
+                            ? "is-invalid"
+                            : ""
+                          }`}
+                      />
+                      <button className='password_toggle_btn' onClick={toggleRepeatPassword} type="button">
+                        {
+                          repeatPasswordType === "password" ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-slash"></i>
+                        }
+                      </button>
+                      <ErrorMessage
+                        component="div"
+                        name="confirmPassword"
+                        className="invalid-feedback"
+                      />
+                    </div>
 
-                      <div class="row">
-                        <div class="col-md-6">
-                          <button type="submit" class="button button-purple w-100">Signup</button>
-                        </div>
-                      </div>
-
-                      <p class="goto">Already have an account? <Link to="/login">Login</Link></p>
-                    </Form>
-
-                  ) : successRes ? (
-                    <div>
-                      <h1 className="p-3 mt-5">Form Submitted</h1>
-                      <div className="alert alert-success mt-3">
-                        {successRes.message}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <button type="submit" class="button button-purple w-100">Signup</button>
                       </div>
                     </div>
-                  ) : errorRes ?
-                    (
-                      <div>
-                        <h1 className="p-3 mt-5">Error!</h1>
-                        <div className="alert alert-danger mt-3">
-                          {errorRes.message}
-                        </div>
-                      </div>
-                    ) : null
+
+                    <p class="goto">Already have an account? <Link to="/login">Login</Link></p>
+                  </Form>
+
+                )
                 }
               </Formik>
             </div>
